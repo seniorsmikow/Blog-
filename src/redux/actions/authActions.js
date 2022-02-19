@@ -18,6 +18,7 @@ export const getUser = (userId) => {
       const { data, status } = await usersAPI.getUserData(userId);
       if (status === 200) {
         dispatch(actionsAuth.getUser(data));
+        dispatch(checkUserAuth());
       }
     } catch (error) {
       dispatch(actionsAuth.toggleShowAlert(true));
