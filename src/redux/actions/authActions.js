@@ -35,7 +35,7 @@ export const userLogin = (email, password) => {
         dispatch(actionsAuth.toggleMessage("Добро пожаловать!"));
         dispatch(actionsAuth.login(data));
         // dispatch(getUser(data._id));
-        dispatch(checkUserAuth());
+        dispatch(checkUserAuth(data._id));
         localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
@@ -63,7 +63,7 @@ export const userRegistration = (fullName, email, password) => {
         dispatch(actionsAuth.toggleMessage("Вы зарегестрировались на сайте!"));
         dispatch(actionsAuth.registration(data));
         // dispatch(getUser(data._id));
-        dispatch(checkUserAuth());
+        dispatch(checkUserAuth(data._id));
         localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
