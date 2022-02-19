@@ -93,10 +93,10 @@ export const userLogout = () => {
   };
 };
 
-export const checkUserAuth = () => {
+export const checkUserAuth = (userId) => {
   return async (dispatch) => {
     try {
-      const { data, status } = await authAPI.checkAuth();
+      const { data, status } = await authAPI.checkAuth(userId);
       if (status === 200) {
         dispatch(getUser(data._id));
         dispatch(actionsAuth.toggleShowAlert(true));
