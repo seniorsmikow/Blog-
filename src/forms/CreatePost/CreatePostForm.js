@@ -55,9 +55,9 @@ export const CreatePostForm = () => {
     dispatch(
       uploadPost({
         title: data.title,
-        text: data.text,
+        text: value,
         photoUrl: url,
-        description: value,
+        description: data.text,
       })
     );
     reset();
@@ -79,7 +79,7 @@ export const CreatePostForm = () => {
         </div>
         <div className={styles.form__text}>
           <label>Короткое описание</label>
-          <input {...register("text")} />
+          <textarea {...register("text")} />
           {errors.text && <p>{errors.text.message}</p>}
         </div>
         <div className={styles.form__file}>

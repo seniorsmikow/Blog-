@@ -16,7 +16,7 @@ function App() {
   const message = useSelector(getMessage);
 
   useEffect(() => {
-    dispatch(checkUserAuth());
+    // dispatch(checkUserAuth());
     dispatch(getAllPosts());
   }, []);
 
