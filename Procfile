@@ -1,1 +1,1 @@
-web: node ./blog-api/server.js
+web: node server.js
