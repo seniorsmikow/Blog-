@@ -43,9 +43,9 @@ export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
       {img && (
         <div className={styles.post__image}>
           {img ? (
-            <img src={`${img}`} alt="some_image" />
+            <img src={`${img}`} alt="post" />
           ) : (
-            <img src={ImageBack} alt="some_image" />
+            <img src={ImageBack} alt="post" />
           )}
         </div>
       )}
