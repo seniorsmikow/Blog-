@@ -34,9 +34,9 @@ export const userLogin = (email, password) => {
         dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage("Добро пожаловать!"));
         dispatch(actionsAuth.login(data));
-        dispatch(getUser(data._id));
-        dispatch(checkUserAuth());
-        localStorage.setItem("token", data.token);
+        // dispatch(getUser(data._id));
+        // dispatch(checkUserAuth());
+        localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -62,9 +62,9 @@ export const userRegistration = (fullName, email, password) => {
         dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage("Вы зарегестрировались на сайте!"));
         dispatch(actionsAuth.registration(data));
-        dispatch(getUser(data._id));
-        dispatch(checkUserAuth());
-        localStorage.setItem("token", data.token);
+        // dispatch(getUser(data._id));
+        // dispatch(checkUserAuth());
+        localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -86,7 +86,7 @@ export const userLogout = () => {
   return (dispatch) => {
     try {
       dispatch(actionsAuth.logout());
-      localStorage.clear();
+      localStorage.removeItem("tokenBlog");
     } catch (error) {
       dispatch(actionsAuth.getError(error.response.data.message));
     }
