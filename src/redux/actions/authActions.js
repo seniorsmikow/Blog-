@@ -34,7 +34,7 @@ export const userLogin = (email, password) => {
         dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage("Добро пожаловать!"));
         dispatch(actionsAuth.login(data));
-        // dispatch(getUser(data._id));
+        dispatch(getUser(data._id));
         dispatch(checkUserAuth(data._id));
         localStorage.setItem("tokenBlog", data.token);
       }
@@ -62,7 +62,7 @@ export const userRegistration = (fullName, email, password) => {
         dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage("Вы зарегестрировались на сайте!"));
         dispatch(actionsAuth.registration(data));
-        // dispatch(getUser(data._id));
+        dispatch(getUser(data._id));
         dispatch(checkUserAuth(data._id));
         localStorage.setItem("tokenBlog", data.token);
       }
