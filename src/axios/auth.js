@@ -11,7 +11,7 @@ export const authAPI = {
       password,
     });
   },
-  checkAuth() {
-    return instance.get("/auth/me");
+  checkAuth(userId) {
+    return instance.get("/auth/me", userId);
   },
 };
