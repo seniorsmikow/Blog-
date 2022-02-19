@@ -18,7 +18,6 @@ export const getUser = (userId) => {
       const { data, status } = await usersAPI.getUserData(userId);
       if (status === 200) {
         dispatch(actionsAuth.getUser(data));
-        dispatch(checkUserAuth());
       }
     } catch (error) {
       dispatch(actionsAuth.toggleShowAlert(true));
@@ -36,6 +35,7 @@ export const userLogin = (email, password) => {
         dispatch(actionsAuth.toggleMessage("Добро пожаловать!"));
         dispatch(actionsAuth.login(data));
         dispatch(getUser(data._id));
+        dispatch(checkUserAuth());
         localStorage.setItem("token", data.token);
       }
     } catch (error) {
@@ -63,6 +63,7 @@ export const userRegistration = (fullName, email, password) => {
         dispatch(actionsAuth.toggleMessage("Вы зарегестрировались на сайте!"));
         dispatch(actionsAuth.registration(data));
         dispatch(getUser(data._id));
+        dispatch(checkUserAuth());
         localStorage.setItem("token", data.token);
       }
     } catch (error) {
