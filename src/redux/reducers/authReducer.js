@@ -40,6 +40,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         isAuth: false,
         userData: null,
+        userId: null,
       };
     case "auth/REMOVE_MESSAGES": {
       return {
