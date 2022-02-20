@@ -1,8 +1,15 @@
 import axios from "axios";
 
-export const instance = axios.create({
+const instance = axios.create({
   baseURL: "/",
   headers: {
     Authorization: window.localStorage.getItem("tokenBlog"),
   },
 });
+
+instance.interceptors.request.use((config) => {
+  config.headers["token"] = window.localStorage.getItem("tokenBlog");
+  return config;
+});
+
+export { instance };
