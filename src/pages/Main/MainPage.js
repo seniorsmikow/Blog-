@@ -19,6 +19,7 @@ export const MainPage = () => {
           <li>Axios</li>
           <li>React hook form</li>
         </ul>
+        Backend часть написана на Node.Js
       </div>
     </div>
   );
