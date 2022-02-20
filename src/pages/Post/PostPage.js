@@ -69,10 +69,12 @@ export const PostPage = () => {
             </div>
           </div>
 
-          <div className={styles.post__text}>{postData && postData.text}</div>
+          <div className={styles.post__text}>
+            {postData && postData.description}
+          </div>
 
           <div className={styles.post__description}>
-            {postData && <ReactMarkdown>{postData.description}</ReactMarkdown>}
+            {postData && <ReactMarkdown>{postData.text}</ReactMarkdown>}
           </div>
           <div>{postData && <CommentsBlock postId={postData._id} />}</div>
         </div>

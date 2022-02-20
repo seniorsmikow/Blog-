@@ -42,16 +42,16 @@ export const EditPostForm = () => {
     dispatch(toggleMessage(null));
   }, [message, id, navigation, dispatch]);
 
-  const changeDescription = (value) => {
-    setDescription(value);
+  const changeText = (value) => {
+    setText(value);
   };
 
   const changeTitle = (e) => {
     setTitle(e.currentTarget.value);
   };
 
-  const changeText = (e) => {
-    setText(e.currentTarget.value);
+  const changeDescription = (e) => {
+    setDescription(e.currentTarget.value);
   };
 
   const changeFile = (e) => {
@@ -96,7 +96,7 @@ export const EditPostForm = () => {
         <div className={styles.form__text}>
           <label>Короткое описание</label>
           <textarea value={description} onChange={changeDescription} />
-          {errors.text && <p>{errors.text.message}</p>}
+          {errors.description && <p>{errors.description.message}</p>}
         </div>
         <div className={styles.form__file}>
           <label>Ссылка на изображение:</label>

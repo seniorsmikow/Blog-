@@ -16,7 +16,7 @@ import styles from "./CreatePostForm.module.scss";
 
 const SignupSchema = yup.object().shape({
   title: yup.string().required("Заполните поле"),
-  text: yup.string().required("Заполните поле"),
+  description: yup.string().required("Заполните поле"),
 });
 
 export const CreatePostForm = () => {
@@ -25,7 +25,7 @@ export const CreatePostForm = () => {
   const postId = postData && postData._id;
   const navigation = useNavigate();
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
+  const [text, setText] = useState("");
   const inputFileRef = useRef(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const CreatePostForm = () => {
   }, [message, postId, navigation, dispatch]);
 
   const onChange = useCallback((value) => {
-    setValue(value);
+    setText(value);
   }, []);
 
   const {
@@ -55,9 +55,9 @@ export const CreatePostForm = () => {
     dispatch(
       uploadPost({
         title: data.title,
-        text: value,
         photoUrl: url,
-        description: data.text,
+        description: data.description,
+        text,
       })
     );
     reset();
@@ -79,8 +79,8 @@ export const CreatePostForm = () => {
         </div>
         <div className={styles.form__text}>
           <label>Короткое описание</label>
-          <textarea {...register("text")} />
-          {errors.text && <p>{errors.text.message}</p>}
+          <textarea {...register("description")} />
+          {errors.description && <p>{errors.description.message}</p>}
         </div>
         <div className={styles.form__file}>
           <label>Ссылка на изображение:</label>
@@ -99,7 +99,7 @@ export const CreatePostForm = () => {
         </div>
         <div className={styles.form__description}>
           <SimpleMDE
-            value={value}
+            value={text}
             onChange={onChange}
             options={autofocusNoSpellcheckerOptions}
           />
