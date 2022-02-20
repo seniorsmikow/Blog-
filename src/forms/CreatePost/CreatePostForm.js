@@ -103,7 +103,6 @@ export const CreatePostForm = () => {
             onChange={onChange}
             options={autofocusNoSpellcheckerOptions}
           />
-          {value ? null : <p>Заполните поле</p>}
         </div>
         <input className={styles.form__submit_input} type="submit" />
       </form>

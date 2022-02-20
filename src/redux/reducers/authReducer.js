@@ -2,7 +2,6 @@ const initialState = {
   isAuth: false,
   userData: null,
   userId: null,
-  profileData: null,
   error: null,
   message: null,
   showAlert: false,

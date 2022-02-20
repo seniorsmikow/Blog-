@@ -20,7 +20,7 @@ export const EditPostForm = () => {
   const postData = useSelector(getPostData);
   const message = useSelector(getMessage);
   const dispatch = useDispatch();
-  const [value, setValue] = useState(postData.description);
+  const [description, setDescription] = useState(postData.description);
   const [title, setTitle] = useState(postData.title);
   const [text, setText] = useState(postData.text);
   const inputFileRef = useRef(null);
@@ -43,7 +43,7 @@ export const EditPostForm = () => {
   }, [message, id, navigation, dispatch]);
 
   const changeDescription = useCallback((value) => {
-    setValue(value);
+    setDescription(value);
   }, []);
 
   const changeTitle = (e) => {
@@ -69,7 +69,7 @@ export const EditPostForm = () => {
         title,
         text,
         photoUrl: url,
-        description: value,
+        description,
       })
     );
     reset();
@@ -95,7 +95,7 @@ export const EditPostForm = () => {
         </div>
         <div className={styles.form__text}>
           <label>Короткое описание</label>
-          <input value={text} onChange={changeText} />
+          <textarea value={description} onChange={changeText} />
           {errors.text && <p>{errors.text.message}</p>}
         </div>
         <div className={styles.form__file}>
@@ -112,11 +112,10 @@ export const EditPostForm = () => {
         </div>
         <div className={styles.form__description}>
           <SimpleMDE
-            value={value}
+            value={text}
             onChange={changeDescription}
             options={autofocusNoSpellcheckerOptions}
           />
-          {value ? null : <p>Заполните поле</p>}
         </div>
         <input className={styles.form__submit_input} type="submit" />
       </form>

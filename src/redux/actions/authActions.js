@@ -32,18 +32,16 @@ export const userLogin = (email, password) => {
       const { data, status } = await authAPI.login(email, password);
       if (status === 200) {
         dispatch(actionsAuth.toggleShowAlert(true));
-        dispatch(actionsAuth.toggleMessage("Добро пожаловать!"));
         dispatch(actionsAuth.login(data));
         dispatch(getUser(data._id));
         dispatch(checkUserAuth());
         localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
+      dispatch(actionsAuth.toggleShowAlert(true));
       if (error.response && error.response.status === 400) {
-        dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage("Неверный логин или пароль"));
       } else {
-        dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage(error.response.data.message));
       }
     }
@@ -67,15 +65,14 @@ export const userRegistration = (fullName, email, password) => {
         localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
+      dispatch(actionsAuth.toggleShowAlert(true));
       if (error.response && error.response.status === 400) {
-        dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(
           actionsAuth.toggleMessage(
             "Пользователь с такой почтой уже зарегистрирован"
           )
         );
       } else {
-        dispatch(actionsAuth.toggleShowAlert(true));
         dispatch(actionsAuth.toggleMessage(error.response.data.message));
       }
     }
@@ -99,8 +96,6 @@ export const checkUserAuth = () => {
       const { data, status } = await authAPI.checkAuth();
       if (status === 200) {
         dispatch(getUser(data._id));
-        dispatch(actionsAuth.toggleShowAlert(true));
-        dispatch(actionsAuth.toggleMessage("Мы рады, что вы снова с нами!"));
       }
     } catch (error) {
       dispatch(actionsAuth.toggleShowAlert(true));
