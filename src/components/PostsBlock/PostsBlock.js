@@ -53,7 +53,7 @@ export const PostsBlock = () => {
                       key={post._id}
                       id={post._id}
                       title={post.title}
-                      text={post.text}
+                      description={post.description}
                       views={post.views}
                       createdAt={post.createdAt}
                       img={post.photoUrl}

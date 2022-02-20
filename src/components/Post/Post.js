@@ -8,7 +8,15 @@ import { getUserData } from "../../redux/selectors/authSelectors";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ImageBack from "../../img/javascript.png";
 
-export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
+export const Post = ({
+  id,
+  title,
+  description,
+  createdAt,
+  views,
+  img,
+  userId,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector(getUserData);
@@ -32,7 +40,7 @@ export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
         <div className={styles.post__title} onClick={() => showPost(id)}>
           {title}
         </div>
-        <p>{text}</p>
+        <p>{description}</p>
         <div className={styles.post__footer}>
           <span>{date}</span>
           <div className={styles.post__footer_counter}>
