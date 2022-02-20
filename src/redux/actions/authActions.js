@@ -35,7 +35,7 @@ export const userLogin = (email, password) => {
         dispatch(actionsAuth.toggleMessage("Добро пожаловать!"));
         dispatch(actionsAuth.login(data));
         dispatch(getUser(data._id));
-        dispatch(checkUserAuth(data._id));
+        dispatch(checkUserAuth());
         localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
@@ -63,7 +63,7 @@ export const userRegistration = (fullName, email, password) => {
         dispatch(actionsAuth.toggleMessage("Вы зарегестрировались на сайте!"));
         dispatch(actionsAuth.registration(data));
         dispatch(getUser(data._id));
-        dispatch(checkUserAuth(data._id));
+        dispatch(checkUserAuth());
         localStorage.setItem("tokenBlog", data.token);
       }
     } catch (error) {
@@ -93,10 +93,10 @@ export const userLogout = () => {
   };
 };
 
-export const checkUserAuth = (userId) => {
+export const checkUserAuth = () => {
   return async (dispatch) => {
     try {
-      const { data, status } = await authAPI.checkAuth(userId);
+      const { data, status } = await authAPI.checkAuth();
       if (status === 200) {
         dispatch(getUser(data._id));
         dispatch(actionsAuth.toggleShowAlert(true));
