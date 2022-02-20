@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { getPost } from "../../redux/actions/postsActions";
 import { useForm } from "react-hook-form";
 import SimpleMDE from "react-simplemde-editor";
@@ -42,9 +42,9 @@ export const EditPostForm = () => {
     dispatch(toggleMessage(null));
   }, [message, id, navigation, dispatch]);
 
-  const changeDescription = useCallback((value) => {
+  const changeDescription = (value) => {
     setDescription(value);
-  }, []);
+  };
 
   const changeTitle = (e) => {
     setTitle(e.currentTarget.value);
@@ -95,7 +95,7 @@ export const EditPostForm = () => {
         </div>
         <div className={styles.form__text}>
           <label>Короткое описание</label>
-          <textarea value={description} onChange={changeText} />
+          <textarea value={description} onChange={changeDescription} />
           {errors.text && <p>{errors.text.message}</p>}
         </div>
         <div className={styles.form__file}>
@@ -113,7 +113,7 @@ export const EditPostForm = () => {
         <div className={styles.form__description}>
           <SimpleMDE
             value={text}
-            onChange={changeDescription}
+            onChange={changeText}
             options={autofocusNoSpellcheckerOptions}
           />
         </div>

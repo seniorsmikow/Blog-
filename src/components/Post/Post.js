@@ -14,6 +14,7 @@ export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
   const userData = useSelector(getUserData);
   const idUserOwnerPost = userData && userData._id;
   const date = formatDate(createdAt);
+  const adminId = "61e6d0b75a80bd98f79ccb30";
 
   const showPost = (id) => {
     navigate(`/posts/${id}`);
@@ -50,7 +51,7 @@ export const Post = ({ id, title, text, createdAt, views, img, userId }) => {
         </div>
       )}
       <div className={styles.edit__post_icons}>
-        {idUserOwnerPost === userId && (
+        {idUserOwnerPost === (userId || adminId) && (
           <div onClick={removePost}>
             <DeleteForeverIcon />
           </div>
